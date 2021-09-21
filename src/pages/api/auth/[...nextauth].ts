@@ -1,9 +1,7 @@
-import { query as q} from 'faunadb'
-
 import NextAuth from "next-auth"
 import Providers from "next-auth/providers"
 
-import { fauna } from '../../../services/fauna'
+import { createUser } from '../../../services/faunadb/createUser'
 
 export default NextAuth({
   // Configure one or more authentication providers
@@ -19,33 +17,7 @@ export default NextAuth({
       const { email } = user
 
       try {
-        await fauna.query(
-
-
-          await fauna.query(
-            q.If(
-              q.Not(
-                q.Exists(
-                  q.Match(
-                    q.Index('user_by_email'),
-                    q.Casefold(email)
-                  )
-                )
-              ),
-              q.Create(
-                q.Collection('users'),
-                { data: { email } }
-              ),
-              q.Get(
-                q.Match(
-                  q.Index('user_by_email'),
-                  q.Casefold(email)
-                )
-              )
-            )
-          )
-        )
-
+        await createUser(email)
         return true
       } catch (error) {
         return false
