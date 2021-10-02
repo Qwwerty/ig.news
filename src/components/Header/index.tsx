@@ -1,4 +1,5 @@
-import Image from 'next/image'
+import Link from 'next/link'
+
 import styles from './styles.module.scss'
 import {SignInButton} from "../SignInButton";
 
@@ -9,8 +10,12 @@ export function Header () {
         <img src="/images/logo.svg" alt="ig.news" />
 
         <nav>
-          <a className={styles.active}>Home</a>
-          <a>Posts</a>
+          <Link href="/" prefetch>
+            <a className={styles.active}>Home</a>
+          </Link>
+          <Link  href="/posts" prefetch>
+            <a>Posts</a>
+          </Link>
         </nav>
 
         <SignInButton />
