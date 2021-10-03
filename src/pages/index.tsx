@@ -19,7 +19,7 @@ export default function Home({ product }: HomeProps) {
         <title>Inicio | ig.news</title>
       </Head>
 
-      <main className={styles.contentContainer}>
+      <main className={`${styles.contentContainer} animate__animated animate__backInLeft`}>
         <section className={styles.hero}>
           <span>👏🏻 Olá, bem-vindo</span>
           <h1>Notícias sobre o mundo <span>React</span>.</h1>

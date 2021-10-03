@@ -23,7 +23,7 @@ export default function Posts({ posts }: PostsProps) {
         <title>Publicações | Ignews</title>
       </Head>
 
-      <main className={styles.container}>
+      <main className={`${styles.container} animate__animated animate__backInUp`}>
         <div className={styles.posts}>
           { posts.map(post => (
             <a href="#" key={post.slug}>
