@@ -57,7 +57,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   return {
     props: {
       product,
-      activeSubscription: null
+      activeSubscription: !!session?.activeSubscription
     },
   }
 }
