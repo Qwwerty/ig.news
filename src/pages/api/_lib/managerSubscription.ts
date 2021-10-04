@@ -7,7 +7,7 @@ export async function saveSubscription (
   customerId: string,
   createAction = false
 ) {
-  const userRef = fauna.query(
+  const userRef = await fauna.query(
     q.Select(
       'ref',
       q.Get(
@@ -19,6 +19,10 @@ export async function saveSubscription (
     )
   )
 
+  console.log('userRef ->', userRef)
+  console.log('subscriptionId ->', subscriptionId)
+  console.log('customerId ->', customerId)
+
   const subscription = await stripe.subscriptions.retrieve(subscriptionId)
 
   const subscriptionData = {
@@ -27,6 +31,8 @@ export async function saveSubscription (
     status: subscription.status,
     price_id: subscription.items.data[0].price.id
   }
+
+  console.log('subscriptionData ->', subscriptionData)
 
   if (createAction) {
     await fauna.query(
