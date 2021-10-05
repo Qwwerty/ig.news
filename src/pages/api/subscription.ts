@@ -2,7 +2,6 @@ import {NextApiRequest, NextApiResponse} from "next";
 import {stripe} from "../../services/stripe";
 
 import {getSession} from 'next-auth/client'
-import {fauna} from "../../services/fauna";
 import { getUser } from '../../services/faunadb/getUser'
 import {updateCheckoutStripe} from "../../services/faunadb/updateCheckoutStripe";
 

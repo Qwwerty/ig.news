@@ -25,14 +25,14 @@ export default function Home({ product, activeSubscription }: HomeProps) {
         <section className={styles.hero}>
           <span>👏🏻 Olá, bem-vindo</span>
           <h1>Notícias sobre o mundo <span>React</span>.</h1>
-          { activeSubscription && (
+          { !activeSubscription && (
             <p>
               Tenha acesso a todas as publicações <br/>
               <span>Por { product.amount } ao mês</span>
             </p>
           )}
 
-          { activeSubscription && <SubscriptionButton /> }
+          { !activeSubscription && <SubscriptionButton /> }
         </section>
 
         <img src="/images/avatar.svg" alt="Menina codando" />
@@ -53,11 +53,22 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
       currency: 'BRL'
     }).format(price.unit_amount / 100),
   }
+  
+  if (session?.activeSubscription) {
+    if (session.activeSubscription != null) {
+      return {
+        props: {
+          product,
+          activeSubscription: true
+        },
+      }
+    }
+  }
 
   return {
     props: {
       product,
-      activeSubscription: !!session?.activeSubscription
+      activeSubscription: false
     },
   }
 }
