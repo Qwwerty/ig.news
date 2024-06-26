@@ -1,6 +1,5 @@
 <h1 align="center">
 
-
 <img src="https://raw.githubusercontent.com/khalleb/ignews/main/public/images/avatar.svg" alt="rocketshoes" width="100px"/>
 
 </h1>
